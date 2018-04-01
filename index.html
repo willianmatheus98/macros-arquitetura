@@ -1,66 +1,236 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
+    <title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/solarized.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-		<style type="text/css">
-			.imagem{
-				margin: 15px 0px;
-			    background: rgba(255, 255, 255, 0.12);
-			    border: none !important;
-			    box-shadow: none !important;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<img class="imagem" src="img/unic.png">
-					<h2>MACROS</h2>
-					<h4>Arquitetura e Manutenção de Computadores</h4>
-					<p><strong>Dupla:</strong> Álvaro Húdson <br>Willian Matheus</p>
-				</section>
-				<section>
-					<h2>Definição</h2>
-					<p>As macros são uma solução simples e eficiente para o problema da necessidade de se repetir uma mesma (ou parecida) sequencia de instruções no decorrer de um programa.</p>
-				</section>
-				
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <script src="js/reveal.js"></script>
+    <style type="text/css">
+        .imagem {
+            margin: 15px 0px;
+            background: rgba(255, 255, 255, 0.12);
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+<body>
+
+    <div class="reveal">
+    	
+        <div class="slides">
+
+            <section>
+                <img class="imagem" src="img/unic.png">
+                <h2>MACROS</h2>
+                <h4>Arquitetura e Manutenção de Computadores</h4>
+                <p><strong>Dupla:</strong> Álvaro Húdson <br>Willian Matheus</p>
+            </section>
+            <section>
+                <h2>Definição</h2>
+                <p>As macros são uma solução simples e eficiente para o problema da necessidade de se repetir uma mesma (ou parecida) sequencia de instruções no decorrer de um programa.</p>
+            </section>
+            <section>
+                <h2>Diferença no uso de Macros</h2>
+                <div style="float: right; width: 50%;">
+                    <ul style="list-style-type: none;">
+                        <li><span style="color:#1b91ff">SWAP MACRO</span></li>
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,P</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,Q</li>
+                        <li><span style="color:#ff2c2d">MOV</span> Q,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P,EBX</li>
+                        <li><span style="color:#1b91ff">ENDM</span></li>
+                        <br>
+                        <li><span style="color:#1b91ff">SWAP</span></li>
+                        <br>
+                        <li><span style="color:#1b91ff">SWAP</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul style="list-style-type: none;">
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,P</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,Q</li>
+                        <li><span style="color:#ff2c2d">MOV</span> Q,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P,EBX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,P</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,Q</li>
+                        <li><span style="color:#ff2c2d">MOV</span> Q,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P,EBX</li>
+                    </ul>
+                </div>
+
+            </section>
+            <section>
+                <h2>Regras para Definição de Macros</h2>
+                <ol>
+                	<li>Um cabeçalho de macro informando o nome da macro que está sendo definida</li>
+                	<li>Um texto, englobando as instruções que fazem parte do corpo da macro</li>
+                	<li>Uma pseudo-instrução para demarcar o final da definição da macro (ENDM)</li>
+                </ol>
+            </section>
+            <section>
+            	<h2>Interpretação das macros pelo montador</h2>
+            	<p style="text-align: left; font-size: 25pt">Após a <strong>Definição</strong> de uma Macro, o Montador salva essa definição em uma tabela de definição de macros para uso posterior.</p>
+            	<p style="text-align: left; font-size: 25pt">O uso do nome da macro como se fosse um código de operação é conhecido como <strong>Chamada da Macro</strong>.</p>
+            	<p style="text-align: left; font-size: 25pt">A substituição pelo corpo da macro é chamada de <strong>Expansão da Macro</strong>.</p>
+            </section>
+            <section>
+            	<h2>Execução de um programa com Macros</h2>
+            	<p style="text-align: left; font-size: 25pt">A expansão da macro ocorre durante o processo de montagem, e não durante a execução do programa.</p>
+            	<p style="text-align: left; font-size: 25pt">Um detalhe importante é que após a expansão das macros, as definições são descartadas pelo montador.</p>
+            	<p style="text-align: left; font-size: 25pt">No programa final, não se sabe se foi utilizado macro.</p>
+            </section>
+            <section>
+            	<h2>Diferença entre Macros e Procedimentos</h2>
+            	<table>
+            		<thead>
+            			<tr>
+            				<th style="font-size: 15pt"><strong>Item</strong></th>
+            				<th style="font-size: 15pt"><strong>Chamada de macro</strong></th>
+            				<th style="font-size: 15pt"><strong>Chamada a procedimento</strong></th>
+            			</tr>
+            		</thead>
+            		<tbody>
+            			<tr>
+            				<td style="font-size: 15pt">Quando essa chamada é executada?</td>
+            				<td style="font-size: 15pt">Durante a montagem do programa</td>
+            				<td style="font-size: 15pt">Durante a execução do programa</td>
+            			</tr>
+            			<tr>
+            				<td style="font-size: 15pt">O corpo da estrutura é inserido no programa-objeto em todos os pontos onde houver uma chamada?</td>
+            				<td style="font-size: 15pt">Sim</td>
+            				<td style="font-size: 15pt">Não</td>
+            			</tr>
+            			<tr>
+            				<td style="font-size: 15pt">A chamada é inserida no programa-objeto para ser executado mais tarde?</td>
+            				<td style="font-size: 15pt">Não</td>
+            				<td style="font-size: 15pt">Sim</td>
+            			</tr>
+            			<tr>
+            				<td style="font-size: 15pt">Há necessidade de se usar uma instrução de retorno após a execução da chamada?</td>
+            				<td style="font-size: 15pt">Não</td>
+            				<td style="font-size: 15pt">Sim</td>
+            			</tr>
+            			<tr>
+            				<td style="font-size: 15pt">Quantas cópias do corpo da estrutura aparecem no programa-objeto?</td>
+            				<td style="font-size: 15pt">Uma por cada chamada da macro</td>
+            				<td style="font-size: 15pt">1</td>
+            			</tr>
+            		</tbody>
+            	</table>
+            </section>
+            <section>
+                <h2>Uso de Macros com parâmetros</h2>
+                <div style="float: right; width: 50%;">
+                    <ul style="list-style-type: none;">
+                        <li><span style="color:#1b91ff">CHANGE MACRO P1,P2</span></li>
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,P1</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,P2</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P2,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P1,EBX</li>
+                        <li><span style="color:#1b91ff">ENDM</span></li>
+                        <br>
+                        <li><span style="color:#1b91ff">CHANGE</span> P,Q</li>
+                        <br>
+                        <li><span style="color:#1b91ff">CHANGE</span> R,S</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul style="list-style-type: none;">
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,P</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,Q</li>
+                        <li><span style="color:#ff2c2d">MOV</span> Q,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> P,EBX</li>
+                        <br>
+                        <li><span style="color:#ff2c2d">MOV</span> EAX,R</li>
+                        <li><span style="color:#ff2c2d">MOV</span> EBX,S</li>
+                        <li><span style="color:#ff2c2d">MOV</span> S,EAX</li>
+                        <li><span style="color:#ff2c2d">MOV</span> R,EBX</li>
+                    </ul>
+                </div>
+
+            </section>
+            <section>
+            	<h2>Macros dentro de Macros</h2>
+            	<ul style="list-style-type: none;">
+                    <li><span style="color:#1b91ff">PRIMEIRA MACRO</span></li>
+                    <li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;IF WORDSIZE GT 16</span></li>
+                    <li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEGUNDA MACRO</span></li>
+					<li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</span></li>
+					<li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDM</span></li>
+                    <li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;ELSE</span></li>
+                    <li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEGUNDA MACRO</span></li>
+					<li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</span></li>
+					<li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDM</span></li>
+					<li><span style="color:#1b91ff">&nbsp;&nbsp;&nbsp;ENDIF</span></li>
+					<li><span style="color:#1b91ff">ENDM</span></li>
+            	</ul>
+            </section>
+            <section>
+            	<h2>Implementação da Facilidade de Macro em um montador</h2>
+            	<p style="text-align: left; font-size: 25pt">2 tabelas, uma com os nomes das macros e outra com as definições (corpo)</p>
+            	            	<p style="text-align: left; font-size: 25pt">Na tabela de nomes tem a macro CHANGE</p>
+            	<p style="text-align: left; font-size: 25pt">Na tabela de definições contém o corpo em formato de String de caracteres</p>
+            	<p style="text-align: left; font-size: 25pt">MOV EAX,&P1; MOV EBX,&P2; MOV &P2, EAX; MOV &P1, EBX;</p>
+            </section>
+            <section>
+            	<h2>Referências bibliográficas</h2>
+            	<p>TANENBAUM, A. S. <strong>Organização Estruturada de computadores</strong>. Quarta Edição. Rio de Janeiro: LTC - Livros Técnicos e Científicos Editora S.A. 2001. p. 299-301.</p>
+            </section>
+            <section data-background-image="https://m.popkey.co/574b46/WxVke.gif">
+            	<h2 style="color: #dadada">Isso é tudo, pessoal!</h2>
+            	
+            </section>
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                },
+                {
+                    src: 'plugin/markdown/markdown.js'
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+            ]
+        });
+    </script>
+</body>
+
 </html>
